@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+// import { Route, Switch } from 'react-router-dom';
+// import Login from './pages/Login';
+// import Todo from './pages/Todo';
+// import NotFound from './pages/NotFound';
 import './App.css';
+import { useState } from 'react';
+import PrivateRoutes from './containers/PrivateRoutes';
+import LocalStorage from './services/localStorage';
 
 function App() {
+  const [role, setRole] = useState(LocalStorage.getRole())
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Switch>
+        // Switch ต้องเลือกของ react-router-dom นะ 
+        <Route exact path="/" component={Todo} />
+        <Route exact path="/login" component={Login} />
+        <Route path="*" component={NotFound} />
+      </Switch> */}
+      < PrivateRoutes role={role} setRole={setRole} />
+    </>
   );
 }
 
